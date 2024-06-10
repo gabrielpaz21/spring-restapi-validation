@@ -39,9 +39,6 @@ public class ProductController {
         return productService.productsWithMinPrice(value);
     }
 
-
-
-
     @GetMapping("/{id}")
     public Product getById(@PathVariable Long id) {
         return productService.findById(id);
