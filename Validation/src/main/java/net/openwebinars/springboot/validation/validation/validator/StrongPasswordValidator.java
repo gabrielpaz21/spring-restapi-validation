@@ -3,11 +3,10 @@ package net.openwebinars.springboot.validation.validation.validator;
 import net.openwebinars.springboot.validation.validation.annotation.StrongPassword;
 import org.passay.*;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class StrongPasswordValidator implements ConstraintValidator<StrongPassword, String> {
 
@@ -48,7 +47,6 @@ public class StrongPasswordValidator implements ConstraintValidator<StrongPasswo
 
         }
 
-
         if (number)
             rules.add(new CharacterRule(EnglishCharacterData.Digit, 1));
 
@@ -64,7 +62,7 @@ public class StrongPasswordValidator implements ConstraintValidator<StrongPasswo
             return true;
 
         List<String> messages = passwordValidator.getMessages(result);
-        String template = messages.stream().collect(Collectors.joining(","));
+        String template = String.join(",", messages);
         constraintValidatorContext.buildConstraintViolationWithTemplate(template)
                 .addConstraintViolation()
                 .disableDefaultConstraintViolation();

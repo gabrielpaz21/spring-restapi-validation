@@ -16,6 +16,7 @@ import org.springframework.validation.ObjectError;
 public class ApiValidationSubError extends ApiSubError {
 
     private String object;
+
     private String message;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -24,29 +25,19 @@ public class ApiValidationSubError extends ApiSubError {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Object rejectedValue;
 
-
-
     public static ApiValidationSubError fromObjectError(ObjectError objectError) {
-        if (objectError instanceof FieldError) {
-            FieldError fieldError = (FieldError) objectError;
-
-            return
-                    ApiValidationSubError.builder()
+        if (objectError instanceof FieldError fieldError) {
+            return ApiValidationSubError.builder()
                             .object(fieldError.getObjectName())
                             .field(fieldError.getField())
                             .rejectedValue(fieldError.getRejectedValue())
                             .message(fieldError.getDefaultMessage())
                             .build();
-
-        }
-        else
-        {
-            return
-                    ApiValidationSubError.builder()
+        } else {
+            return ApiValidationSubError.builder()
                             .object(objectError.getObjectName())
                             .message(objectError.getDefaultMessage())
                             .build();
-
         }
     }
 

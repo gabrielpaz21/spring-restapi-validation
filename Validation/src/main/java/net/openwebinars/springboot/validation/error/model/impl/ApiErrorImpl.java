@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import net.openwebinars.springboot.validation.error.model.ApiError;
 import net.openwebinars.springboot.validation.error.model.ApiSubError;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,7 +18,7 @@ import java.util.List;
 @NoArgsConstructor @AllArgsConstructor
 public class ApiErrorImpl implements ApiError {
 
-    private HttpStatus status;
+    private HttpStatusCode status;
     private String message;
     private String path;
 
@@ -34,6 +34,5 @@ public class ApiErrorImpl implements ApiError {
     public int getStatusCode() {
         return status != null ? status.value() : 0;
     }
-
 
 }

@@ -11,16 +11,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.net.URI;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/user/")
 public class UserController {
-
 
     private final UserService userService;
 
@@ -30,7 +28,7 @@ public class UserController {
         return userService.findAll()
                 .stream()
                 .map(GetUserDto::fromUser)
-                .collect(Collectors.toList());
+                .toList();
 
     }
 
@@ -38,7 +36,6 @@ public class UserController {
     public GetUserDto getById(@PathVariable Long id) {
         return GetUserDto.fromUser(userService.findById(id));
     }
-
 
     @PostMapping("/register")
     public ResponseEntity<GetUserDto> register(@Valid  @RequestBody NewUserDto newUserDto) {
@@ -53,7 +50,6 @@ public class UserController {
         return ResponseEntity
                 .created(createdURI)
                 .body(GetUserDto.fromUser(created));
-
 
     }
 

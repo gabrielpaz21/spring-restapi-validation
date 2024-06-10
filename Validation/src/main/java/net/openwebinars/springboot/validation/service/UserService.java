@@ -9,7 +9,7 @@ import net.openwebinars.springboot.validation.repo.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
@@ -51,8 +51,6 @@ public class UserService {
                 .fullname(newUserDto.getFullname())
                 .email(newUserDto.getEmail())
                 .build());
-
-
     }
 
     /**
@@ -97,6 +95,5 @@ public class UserService {
     public boolean userExists(String username) {
         return repository.existsByUsername(username);
     }
-
 
 }

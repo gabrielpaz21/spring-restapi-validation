@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.URL;
 
-import javax.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotEmpty;
 
 @Data
 @NoArgsConstructor @AllArgsConstructor
@@ -16,7 +16,7 @@ public class EditUserDto {
     @NotEmpty(message = "{userDto.fullname.notempty}")
     private String fullname;
 
-    @URL(message = "{usrDto.avatar.url}")
+    @URL(message = "{userDto.avatar.url}")
     private String avatar;
 
 }
